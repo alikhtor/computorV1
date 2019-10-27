@@ -16,7 +16,7 @@ if (pl != 3) {
 const arr = process.argv[2].toUpperCase().split(' ').join('').split('=');
 // console.log(arr);
 
-function parseSide(part) {
+const parseSide = function(part) {
   return part.split("-")
             .map((elem, index) => (index > 0 ? '-' : '') + elem)
             .filter(elem => elem != '')
@@ -36,7 +36,7 @@ function parseSide(part) {
             });
 }
 
-function makeSimple(part) {
+const makeSimple = function(part) {
   return part.reduce((prev, curr) => {
         if (prev[curr[1]] == null)
           prev[curr[1]] = curr[0];
@@ -67,13 +67,13 @@ right.forEach(val => {
 
 const left = leftTemp.filter(x => x[0] !== 0);
 
-function startString(part) {
+const startString = function(part) {
   if (part.length == 0)
     return '0 * X^0';
   return part[0][0] + ' * X^' + part[0][1];
 }
 
-function continueString(part) {
+const continueString = function(part) {
   let str = '';
   part.forEach((val, index) => {
     if (index == 0)
@@ -86,7 +86,7 @@ function continueString(part) {
   return str;
 }
 
-function makeString(part) {
+const makeString = function(part) {
   const str1 = startString(part);
   const str2 = continueString(part);
   return str1 + str2;
